@@ -136,19 +136,175 @@ const teacher = {
 // verb: a string used to name a function (‘bark’, ‘bleet’)
 // noise: a string to be printed when above function is called (‘woof’, ‘baaa’)
 // Use one or more of the object enhancements we’ve covered.
-
-// const d = createAnimal("dog", "bark", "Woooof!")
-// // {species: "dog", bark: ƒ}
-// d.bark()  //"Woooof!"
-
-// const s = createAnimal("sheep", "bleet", "BAAAAaaaa")
-// // {species: "sheep", bleet: ƒ}
-// s.bleet() //"BAAAAaaaa"
 function createAnimal(species, verb, noise) {
   return {
     species,
-    [verb]: function() {
+    [verb]: function () {
       console.log(noise);
-    }
+    },
   };
+}
+
+// DESTRUCTURING EXCERCISES
+
+// Object Destructuring 1
+// What does the following code return/print?
+// let facts = {numPlanets: 8, yearNeptuneDiscovered: 1846};
+// let {numPlanets, yearNeptuneDiscovered} = facts;
+
+console.log(numPlanets);
+8;
+console.log(yearNeptuneDiscovered);
+1846;
+
+// Object Destructuring 2
+// What does the following code return/print?
+// let planetFacts = {
+//   numPlanets: 8,
+//   yearNeptuneDiscovered: 1846,
+//   yearMarsDiscovered: 1659
+// };
+// let {numPlanets, ...discoveryYears} = planetFacts;
+console.log(discoveryYears);
+{
+  yearNeptuneDiscovered: 1846, yearMarsDiscovered;
+  1659;
+}
+
+// Object Destructuring 3
+
+// What does the following code return/print?
+// function getUserData({firstName, favoriteColor="green"}){
+//   return `Your name is ${firstName} and you like ${favoriteColor}`;
+// }
+getUserData({
+  firstName: "Alejandro",
+  favoriteColor: "purple",
+})`Your name is Alejandro and you like purple`;
+getUserData({ firstName: "Melissa" })`Your name is Melissa and you like green`;
+getUserData({})`Your name is undefined and you like green`;
+
+// Array Destructuring 1
+// What does the following code return/print?
+// let [first, second, third] = ["Maya", "Marisa", "Chi"];
+console.log(first);
+Maya;
+console.log(second);
+Marisa;
+console.log(third);
+Chi;
+
+// Array Destructuring 2
+// What does the following code return/print?
+// let [raindrops, whiskers, ...aFewOfMyFavoriteThings] = [
+//   "Raindrops on roses",
+//   "whiskers on kittens",
+//   "Bright copper kettles",
+//   "warm woolen mittens",
+//   "Brown paper packages tied up with strings"
+// ]
+console.log(raindrops);
+("Raindrops on roses");
+console.log(whiskers);
+("whiskers on kittens");
+console.log(aFewOfMyFavoriteThings);
+[
+  "Bright copper kettles",
+  "warm woolen mittens",
+  "Brown paper packages tied up with strings",
+];
+
+// Array Destructuring 3
+// What does the following code return/print?
+// let numbers = [10, 20, 30];
+// [numbers[1], numbers[2]] = [numbers[2], numbers[1]]
+console.log(numbers)[(10, 30, 20)];
+
+// ES2015 Refactoring
+// In this exercise, you’ll refactor some ES5 code into ES2015.
+
+// ES5 Assigning Variables to Object Properties
+// var obj = {
+//   numbers: {
+//     a: 1,
+//     b: 2
+//   }
+// };
+
+// var a = obj.numbers.a;
+// var b = obj.numbers.b;
+// /* Write an ES2015 Version */
+const obj = {
+  numbers: {
+    a: 1,
+    b: 2,
+  },
+};
+const { a, b } = (obj.numbers[
+  // ES5 Array Swap
+  // var arr = [1, 2];
+  // var temp = arr[0];
+  // arr[0] = arr[1];
+  // arr[1] = temp;
+  // /* Write an ES2015 Version */
+  (arr[0], arr[1])
+] = [arr[1], arr[0]]);
+
+// Write a function called raceResults which accepts a single array argument. It should return an object with the keys first, second, third, and rest.
+// first: the first element in the array
+// second: the second element in the array
+// third: the third element in the array
+// rest: all other elements in the array
+// Write a one line function to make this work using
+// An arrow function
+// Destructuring
+// ‘Enhanced’ object assignment (same key/value shortcut)
+// raceResults(['Tom', 'Margaret', 'Allison', 'David', 'Pierre'])
+const raceResults = ([first, second, third, ...rest]) => ({
+  first,
+  second,
+  third,
+  rest,
+});
+
+//   MAP AND SETS EXCERCISE
+
+// Quick Question #1
+// What does the following code return?
+// new Set([1,1,2,2,3,4])
+[1, 2, 3, 4];
+
+// Quick Question #2
+// What does the following code return?
+// [...new Set("referee")].join("")
+("ref");
+
+// Quick Questions #3
+// What does the Map m look like after running the following code?
+// let m = new Map();
+// m.set([1,2,3], true);
+// m.set([1,2,3], false);
+  0: {Array(3) => true}
+  1: {Array(3) => false}
+
+//   hasDuplicate
+// Write a function called hasDuplicate which accepts an array and returns true or false if that array contains a duplicate
+const hasDuplicate = (arr) => new Set(arr).size !== arr.length;
+
+// vowelCount
+// Write a function called vowelCount which accepts a string and returns a map where the keys are numbers and the values are the count of the vowels in the string.
+function isVowel(char) {
+  return "aeiou".includes(char);
+}
+
+function vowelCount(str) {
+  const vowelMap = new Map();
+  for (let char of str) {
+    let lowerCaseChar = char.toLowerCase();
+    if (isVowel(lowerCaseChar)) {
+      const { [lowerCaseChar]: count = 0 } = vowelMap;
+      vowelMap.set(lowerCaseChar, count + 1);
+    }
+  }
+  return vowelMap;
 }
