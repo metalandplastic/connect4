@@ -1,0 +1,57 @@
+#board {
+  background-color: aliceblue;
+  border-collapse: collapse;
+  border: solid 5px blue;
+
+  margin: auto;
+}
+
+#board td {
+  width: 85px;
+  height: 85px;
+  border: solid 5px blue;
+}
+
+h1 {
+  font-size: 50px;
+  color: black;
+  text-align: center;
+  text-decoration: underline solid;
+}
+
+button {
+  font-size: 20px;
+  color: white;
+  background-color: blue;
+  border-radius: 10px;
+  border: solid 5px black;
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.piece {
+  margin: 5px;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+}
+
+.piece.p1 {
+  background-color: red;
+}
+
+.piece.p2 {
+  background-color: yellow;
+}
+
+/* column-top is table row of clickable areas for each column */
+
+#column-top td {
+  border: dashed 1px lightgray;
+}
+
+#column-top td:hover {
+  background-color: gold;
+}
